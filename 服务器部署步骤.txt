@@ -1,0 +1,32 @@
+1、停止现有的服务器
+pm2 stop server
+2、移除现有的project-server
+rm -rf  project-server
+3、从github下载project-server
+git clone git@github.com:litufu/project-server.git
+4、安装包
+cd project-server && npm install
+5、修改src/index
+引入
+import 'babel-polyfill'
+修改host
+使用localhost,删除host
+6、删除已有的lib，重新构建
+rm -rf lib && npm run build
+7、启动数据库
+cd database && docker-compose up -d 
+8、修改prisma.yml的enpoint为
+http://localhost:4466
+vim prisma.yml
+编辑：i
+修改后":" wq保存退出
+9、重新部署新的schema
+prisma deploy
+10、运行server
+从database文件夹退出到project-server
+cd..
+运行
+npm run start
+
+
+
