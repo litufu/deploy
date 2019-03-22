@@ -1,0 +1,2 @@
+1、修改setting中的production为true
+2、
